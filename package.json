@@ -1,0 +1,49 @@
+{
+  "name": "funky-monorepo",
+  "private": true,
+  "version": "1.0.0",
+  "description": "Funky Monorepo - React Component Library and Tools",
+  "scripts": {
+    "build": "pnpm -r build",
+    "clean": "pnpm -r clean",
+    "dev": "pnpm -r --parallel dev",
+    "lint": "eslint .",
+    "format": "prettier --write \"**/*.{js,jsx,ts,tsx,json,md}\"",
+    "test": "pnpm -r test",
+    "typecheck": "pnpm -r typecheck",
+    "changeset": "changeset",
+    "version-packages": "changeset version",
+    "release": "pnpm build && changeset publish",
+    "docs:dev": "pnpm --filter @funky/docs dev",
+    "docs:build": "pnpm --filter @funky/docs build",
+    "docs:preview": "pnpm --filter @funky/docs preview",
+    "ui:lint": "pnpm --filter @funky/ui lint",
+    "ui:dev": "pnpm --filter @funky/ui dev",
+    "ui:test": "pnpm --filter @funky/ui test",
+    "why": "pnpm-why",
+    "dep-graph": "madge --image dependency-graph.svg --extensions ts,tsx,js,jsx packages/",
+    "dep-tree": "madge --tree --extensions ts,tsx,js,jsx packages/"
+  },
+  "keywords": [
+    "react",
+    "components",
+    "ui",
+    "icons",
+    "utils",
+    "testing"
+  ],
+  "author": "",
+  "license": "MIT",
+  "engines": {
+    "node": ">=16",
+    "pnpm": ">=8"
+  },
+  "devDependencies": {
+    "@funky/config": "workspace:*",
+    "@changesets/cli": "^2.27.1",
+    "typescript": "^5.0.0",
+    "prettier": "^3.0.0",
+    "pnpm-why": "^1.0.0",
+    "madge": "^6.1.0"
+  }
+} 
