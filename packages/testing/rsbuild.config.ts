@@ -12,7 +12,14 @@ export default defineConfig({
   },
   output: {
     ...sharedConfig.output,
-    externals: ['react', 'react-dom'],
+    externals: [
+      'react',
+      'react-dom',
+      '@testing-library/react',
+      '@testing-library/jest-dom',
+      'vitest',
+      '@vitest/ui',
+    ],
   },
   plugins: [pluginReact()],
 }); 

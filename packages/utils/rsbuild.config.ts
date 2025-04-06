@@ -9,10 +9,26 @@ export default defineConfig({
     entry: {
       index: './src/index.ts',
     },
+    alias: {
+      '@': './src',
+    },
   },
   output: {
     ...sharedConfig.output,
+    clean: true,
+    distPath: {
+      root: 'dist',
+    },
+    format: ['esm', 'cjs'],
+    sourceMap: true,
+    targets: ['es2018'],
     externals: ['react', 'react-dom'],
+  },
+  performance: {
+    chunkSplit: {
+      strategy: 'split-by-module',
+    },
+    compress: true,
   },
   plugins: [pluginReact()],
 }); 

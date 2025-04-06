@@ -1,36 +1,40 @@
 {
   "name": "@funky/testing",
   "version": "1.0.0",
-  "description": "Funky Testing Utilities Library",
+  "private": true,
   "main": "dist/index.js",
   "module": "dist/index.mjs",
   "types": "dist/index.d.ts",
+  "sideEffects": false,
   "files": [
     "dist"
   ],
   "scripts": {
-    "build": "rsbuild build",
     "dev": "rsbuild dev",
-    "test": "vitest",
-    "lint": "eslint src --ext .ts,.tsx",
-    "format": "prettier --write \"src/**/*.{ts,tsx}\""
+    "build": "rsbuild build",
+    "preview": "rsbuild preview",
+    "clean": "rimraf dist",
+    "typecheck": "tsc --noEmit"
   },
   "dependencies": {
-    "react": "^18.2.0",
-    "react-dom": "^18.2.0"
-  },
-  "peerDependencies": {
+    "@testing-library/react": "^14.0.0",
+    "@testing-library/jest-dom": "^6.0.0",
+    "vitest": "^1.0.0",
+    "@vitest/ui": "^1.0.0",
     "react": "^18.2.0",
     "react-dom": "^18.2.0"
   },
   "devDependencies": {
-    "@rsbuild/core": "^0.4.0",
-    "@rsbuild/plugin-react": "^0.4.0",
+    "@funky/config": "workspace:*",
+    "@rsbuild/core": "^1.1.1",
+    "@rsbuild/plugin-react": "^1.1.1",
     "@types/react": "^18.2.0",
     "@types/react-dom": "^18.2.0",
-    "typescript": "^5.0.0",
-    "vitest": "^1.0.0",
-    "eslint": "^8.0.0",
-    "prettier": "^3.0.0"
+    "rimraf": "^5.0.0",
+    "typescript": "^5.0.0"
+  },
+  "peerDependencies": {
+    "react": "^18.2.0",
+    "react-dom": "^18.2.0"
   }
 } 

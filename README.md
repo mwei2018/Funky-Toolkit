@@ -22,7 +22,8 @@ A modern React component library built with TypeScript and pnpm workspaces.
 ### Installation
 
 ```bash
-pnpm install
+pnpm build
+
 ```
 
 ### Development

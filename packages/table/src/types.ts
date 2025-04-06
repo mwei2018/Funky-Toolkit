@@ -40,4 +40,16 @@ export interface TableColumn {
   suppressFilter?: boolean;
   suppressMovableColumns?: boolean;
   suppressColumnVirtualisation?: boolean;
+}
+
+export interface TableProps {
+  data: any[];
+  columns: any[];
+  // Add more type definitions as needed
+}
+
+export interface TableColumn {
+  field: string;
+  headerName: string;
+  // Add more column properties as needed
 } 

@@ -74,4 +74,6 @@ export const Table: React.FC<FunkyTableProps> = ({
       />
     </div>
   );
-}; 
+};
+
+export * from '../types'; 

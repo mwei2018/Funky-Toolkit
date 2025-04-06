@@ -4,7 +4,7 @@
     "composite": true,
     "emitDeclarationOnly": true
   },
-  "include": ["packages/*/src"],
+  "include": [".eslintrc.ts", "packages/*/src"],
   "references": [
     { "path": "./packages/table" },
     { "path": "./packages/ui" },
