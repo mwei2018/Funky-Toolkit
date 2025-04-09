@@ -25,6 +25,8 @@ A modern React component library built with TypeScript and pnpm workspaces.
 pnpm build
 
 ```
+--pnpm remove ag-grid-community ag-grid-react ag-grid-enterprise --filter @funky/table
+--pnpm add -D @ag-grid-community/core @ag-grid-community/react --filter @funky/table
 
 ### Development
 

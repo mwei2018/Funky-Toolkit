@@ -1,74 +1,83 @@
-import React from 'react';
+import type { Meta, StoryObj } from '@storybook/react';
 import { Table } from '../components/Table';
-import type { TableColumn } from '../types';
+import type { ColDef } from 'ag-grid-community';
+import '../index.css';
 
-const columns: TableColumn[] = [
-  {
-    field: 'id',
-    headerName: 'ID',
-    width: 100,
-    pinned: 'left',
+const meta = {
+  title: 'Components/Table',
+  component: Table,
+  parameters: {
+    layout: 'centered',
   },
-  {
-    field: 'name',
-    headerName: '名称',
-    flex: 1,
-  },
-  {
-    field: 'age',
-    headerName: '年龄',
-    width: 100,
-  },
-  {
-    field: 'email',
-    headerName: '邮箱',
-    flex: 1,
-  },
-  {
-    field: 'status',
-    headerName: '状态',
-    width: 120,
-    cellRenderer: (params) => (
-      <span style={{ color: params.value === 'active' ? 'green' : 'red' }}>
-        {params.value}
-      </span>
+  tags: ['autodocs'],
+  decorators: [
+    (Story) => (
+      <div style={{ height: '500px', width: '800px', padding: '20px' }}>
+        <Story />
+      </div>
     ),
+  ],
+} satisfies Meta<typeof Table>;
+
+export default meta;
+type Story = StoryObj<typeof meta>;
+
+// 示例数据
+const sampleData = [
+  { id: 1, name: 'John', age: 30, country: 'USA' },
+  { id: 2, name: 'Jane', age: 25, country: 'Canada' },
+  { id: 3, name: 'Bob', age: 40, country: 'UK' },
+  { id: 4, name: 'Alice', age: 35, country: 'Australia' },
+];
+
+// 列定义
+const columnDefs: ColDef[] = [
+  { field: 'id', headerName: 'ID', width: 100 },
+  { field: 'name', headerName: 'Name', width: 150 },
+  { field: 'age', headerName: 'Age', width: 100 },
+  { field: 'country', headerName: 'Country', width: 150 },
+];
+
+// 基本表格
+export const Basic: Story = {
+  args: {
+    data: sampleData,
+    columnDefs,
   },
-];
+};
 
-const data = [
-  { id: 1, name: '张三', age: 25, email: 'zhangsan@example.com', status: 'active' },
-  { id: 2, name: '李四', age: 30, email: 'lisi@example.com', status: 'inactive' },
-  { id: 3, name: '王五', age: 28, email: 'wangwu@example.com', status: 'active' },
-];
+// 带加载状态的表格
+export const Loading: Story = {
+  args: {
+    data: sampleData,
+    columnDefs,
+    loading: true,
+  },
+};
 
-export const Default = () => (
-  <div style={{ height: 400 }}>
-    <Table
-      columnDefs={columns}
-      data={data}
-      pagination={true}
-      paginationPageSize={10}
-    />
-  </div>
-);
+// 带错误状态的表格
+export const WithError: Story = {
+  args: {
+    data: sampleData,
+    columnDefs,
+    error: { message: 'Failed to load data' } as Error,
+  },
+};
 
-export const Loading = () => (
-  <div style={{ height: 400 }}>
-    <Table
-      columnDefs={columns}
-      data={[]}
-      loading={true}
-    />
-  </div>
-);
+// 空数据表格
+export const Empty: Story = {
+  args: {
+    data: [],
+    columnDefs,
+  },
+};
 
-export const Error = () => (
-  <div style={{ height: 400 }}>
-    <Table
-      columnDefs={columns}
-      data={[]}
-      error={new Error('加载失败')}
-    />
-  </div>
-); 
+// 自定义样式的表格
+export const CustomStyle: Story = {
+  args: {
+    data: sampleData,
+    columnDefs,
+    style: { height: '400px', width: '600px' },
+    className: 'ag-theme-alpine',
+  },
+}; 
