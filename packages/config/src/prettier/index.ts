@@ -1,11 +1,18 @@
-export default {
-  semi: true,
-  singleQuote: true,
-  trailingComma: 'es5',
+import type { Options } from 'prettier';
+
+const config: Options = {
   printWidth: 100,
   tabWidth: 2,
   useTabs: false,
+  semi: true,
+  singleQuote: true,
+  quoteProps: 'as-needed',
+  jsxSingleQuote: false,
+  trailingComma: 'es5',
   bracketSpacing: true,
-  arrowParens: 'avoid',
+  bracketSameLine: false,
+  arrowParens: 'always',
   endOfLine: 'lf',
-}; 
+};
+
+export default config; 

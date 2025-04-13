@@ -1,10 +1,6 @@
 import { defineConfig, type RsbuildConfig } from '@rsbuild/core';
 import { pluginReact } from '@rsbuild/plugin-react';
 
-/**
- * 共享的 Rsbuild 配置
- * 用于所有包的基础构建配置
- */
 export const sharedConfig: RsbuildConfig = {
   source: {
     alias: {
@@ -26,10 +22,7 @@ export const sharedConfig: RsbuildConfig = {
   },
   tools: {
     bundlerChain: (chain) => {
-      // 优化构建性能
-      chain.optimization.minimize(true);
-      
-      // 设置 chunk 分割
+      chain.optimization.minimize(true);      
       chain.optimization.splitChunks({
         chunks: 'all',
         minSize: 30000,
