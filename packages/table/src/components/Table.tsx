@@ -1,12 +1,16 @@
 import React, { useEffect, useState } from 'react';
 import { AgGridReact } from 'ag-grid-react';
-import { ModuleRegistry, AllEnterpriseModule } from 'ag-grid-enterprise';
+import { ModuleRegistry } from 'ag-grid-community';
+import { AllCommunityModule } from 'ag-grid-community';
+import type { ColDef, GridApi } from 'ag-grid-community';
+import 'ag-grid-community/styles/ag-grid.css';
+import 'ag-grid-community/styles/ag-theme-alpine.css';
 import type { FunkyTableProps } from '../types';
 import { defaultTheme } from '../theme';
-import './styles.css';
+import '../index.css';
 
-// 注册所有企业版模块
-ModuleRegistry.registerModules([AllEnterpriseModule]);
+// Register all Community features
+ModuleRegistry.registerModules([AllCommunityModule]);
 
 export const Table: React.FC<FunkyTableProps> = ({
   data = [],
@@ -17,7 +21,7 @@ export const Table: React.FC<FunkyTableProps> = ({
   style,
   ...gridOptions
 }) => {
-  const [gridApi, setGridApi] = useState<any>(null);
+  const [gridApi, setGridApi] = useState<GridApi | null>(null);
 
   useEffect(() => {
     if (gridApi) {
@@ -37,7 +41,14 @@ export const Table: React.FC<FunkyTableProps> = ({
   };
 
   return (
-    <div className={`funky-table ${className || ''}`} style={style}>
+    <div 
+      className={`ag-theme-alpine ${className || ''}`} 
+      style={{ 
+        height: '100%', 
+        width: '100%',
+        ...style 
+      }}
+    >
       <AgGridReact
         {...defaultTheme}
         {...gridOptions}
@@ -55,23 +66,10 @@ export const Table: React.FC<FunkyTableProps> = ({
         enableCellTextSelection={true}
         ensureDomOrder={true}
         maxConcurrentDatasourceRequests={2}
-        autoSizeStrategy={{
-          type: 'fitGridWidth',
-          defaultMinWidth: 100,
-        }}
-        defaultColDef={{
-          sortable: true,
-          filter: true,
-          resizable: true,
-          suppressMovable: false,
-          suppressMenu: false,
-          suppressSizeToFit: false,
-          suppressAutoSize: false,
-          suppressUnSort: false,
-          suppressSort: false,
-          suppressFilter: false,
-        }}
+        defaultColDef={defaultTheme.defaultColDef}
       />
     </div>
   );
-}; 
+};
+
+export * from '../types'; 

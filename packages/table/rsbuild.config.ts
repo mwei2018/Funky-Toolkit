@@ -2,23 +2,35 @@ import { defineConfig } from '@rsbuild/core';
 import { pluginReact } from '@rsbuild/plugin-react';
 
 export default defineConfig({
-  plugins: [pluginReact()],
   source: {
     entry: {
       index: './src/index.ts',
     },
+    alias: {
+      '@': './src',
+    },
   },
   output: {
-    library: {
-      type: 'umd',
-      name: 'FunkyTable',
-    },
     clean: true,
-    externals: {
-      'react': 'React',
-      'react-dom': 'ReactDOM',
-      'ag-grid-community': 'ag-grid-community',
-      'ag-grid-react': 'ag-grid-react'
-    }
+    distPath: {
+      root: 'dist',
+    },
+    format: ['esm', 'cjs'],
+    sourceMap: true,
+    targets: ['es2018'],
+    externals: [
+      'react',
+      'react-dom',
+      'ag-grid-community',
+      'ag-grid-enterprise',
+      'ag-grid-react',
+    ],
   },
+  performance: {
+    chunkSplit: {
+      strategy: 'split-by-module',
+    },
+    compress: true,
+  },
+  plugins: [pluginReact()],
 }); 

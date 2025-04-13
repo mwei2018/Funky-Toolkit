@@ -1,19 +1,25 @@
-import { GridOptions } from 'ag-grid-community';
+import type { GridOptions } from 'ag-grid-community';
 
-export const defaultTheme: Partial<GridOptions> = {
-  theme: 'ag-theme-alpine',
-  rowHeight: 40,
+export const defaultTheme: GridOptions = {
   headerHeight: 40,
+  rowHeight: 40,
+  animateRows: true,
+  enableCellTextSelection: true,
+  suppressCellFocus: true,
+  suppressRowClickSelection: true,
+  rowSelection: 'multiple',
+  pagination: true,
+  paginationPageSize: 10,
+  paginationPageSizeSelector: [10, 20, 50, 100],
   defaultColDef: {
     sortable: true,
     filter: true,
     resizable: true,
+    suppressMovable: false,
+    menuTabs: ['filterMenuTab', 'generalMenuTab', 'columnsMenuTab'],
   },
-  pagination: true,
-  paginationPageSize: 10,
-  suppressRowClickSelection: true,
-  rowSelection: 'single',
-  animateRows: true,
-  suppressLoadingOverlay: false,
-  suppressNoRowsOverlay: false,
+  autoSizeStrategy: {
+    type: 'fitGridWidth',
+    defaultMinWidth: 100,
+  },
 }; 

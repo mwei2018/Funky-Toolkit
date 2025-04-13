@@ -1,5 +1,6 @@
 import type { GridOptions, GridReadyEvent, GetRowIdParams, IsRowSelectable } from 'ag-grid-enterprise';
 import type { ReactNode } from 'react';
+import { ColDef } from 'ag-grid-community';
 
 export interface FunkyTableProps extends Omit<GridOptions, 'rowData'> {
   data?: any[];
@@ -40,4 +41,19 @@ export interface TableColumn {
   suppressFilter?: boolean;
   suppressMovableColumns?: boolean;
   suppressColumnVirtualisation?: boolean;
+}
+
+export interface TableProps {
+  data: any[];
+  columns: ColDef[];
+  loading?: boolean;
+  error?: string | null;
+  onGridReady?: (params: GridReadyEvent) => void;
+  [key: string]: any;
+}
+
+export interface TableColumn {
+  field: string;
+  headerName: string;
+  // Add more column properties as needed
 } 
