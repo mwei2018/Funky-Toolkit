@@ -1,0 +1,25 @@
+{
+  "name": "example",
+  "version": "0.0.1",
+  "private": true,
+  "scripts": {
+    "dev": "rsbuild dev",
+    "build": "rsbuild build",
+    "preview": "rsbuild preview",
+    "typecheck": "tsc --noEmit"
+  },
+  "dependencies": {
+    "react": "^18.2.0",
+    "react-dom": "^18.2.0",
+    "@funky/utils": "workspace:*",
+    "@funky/theme": "workspace:*",
+    "@funky/ui": "workspace:*"
+  },
+  "devDependencies": {
+    "@rsbuild/core": "^1.3.3",
+    "@rsbuild/plugin-react": "^1.1.1",
+    "@types/react": "^18.2.0",
+    "@types/react-dom": "^18.2.0",
+    "typescript": "^5.3.3"
+  }
+} 
